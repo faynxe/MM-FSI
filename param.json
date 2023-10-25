@@ -1,0 +1,6 @@
+{
+    "db": "blog-stock-prices-db",
+    "query_bucket": "mmfsigenai-querystagingbucket-18l332md8e2fv",
+    "region": "us-east-2",
+    "kendra_id": "45739a4f-c80f-4201-b183-20389d0febc7"
+}

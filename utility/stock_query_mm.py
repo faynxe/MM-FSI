@@ -10,35 +10,10 @@ from langchain.llms.bedrock import Bedrock
 with open ('param.json','r') as f:
     params=json.load(f)
     
-def get_secret():
-
-    secret_name = "anthropic_key"
-    region_name = "us-east-2"
-
-    # Create a Secrets Manager client
-    session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=region_name
-    )
-
-    try:
-        get_secret_value_response = client.get_secret_value(
-            SecretId=secret_name
-        )
-    except ClientError as e:
-        # For a list of exceptions thrown, see
-        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
-        raise e
-
-    # Decrypts secret using the associated KMS key.
-    secret = get_secret_value_response['SecretString']
-
-    return json.loads(secret)
 
 inference_modifier = {'max_tokens_to_sample':512, 
                       "temperature":0,
-                        "stop_sequences":["\n\nQuestion:","\n\nHuman:"] 
+                        # "stop_sequences":["\n\nQuestion:","\n\nHuman:"] 
                      }
 
 llm = Bedrock(model_id='anthropic.claude-v2', model_kwargs = inference_modifier )
@@ -96,7 +71,7 @@ SQLQuery:"""
 def run_query(query):
 
     PROMPT_sql = PromptTemplate(
-        input_variables=["input", "table_info", "dialect"], template=_DEFAULT_TEMPLATE
+        input_variables=["input", "table_info"], template=_DEFAULT_TEMPLATE
     )
     
     db_chain = SQLDatabaseChain.from_llm(llm, dbathena, prompt=PROMPT_sql, verbose=True, return_intermediate_steps=False)

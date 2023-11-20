@@ -81,10 +81,11 @@ git clone [github_link]
 ## Set Up StreamLit Front-End
 
 The streamlit app for this prioject is located in *app_complete.py*.
-It uses dependencies located in the utility folder.
+It uses dependencies located in the utility folder. 
 
 To run this Streamlit App on Sagemaker Studio follow the steps in the link below:
-* [Set Up SageMaker Studio](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-quick-start.html)
+* [Set Up SageMaker Studio](https://docs.aws.amazon.com/sagemaker/latest/dg/onboard-iam.html)
+    - Use the sagemaker execution role `SageMakerRole` deployed by the cloudformation template above for your SageMaker Studio Domain default execution role.
 * [Launch SageMaker Studio](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-launch.html)
 * [Clone this git repo into studio](https://docs.aws.amazon.com/sagemaker/latest/dg/studio-tasks-git.html)
 * Change the values for the variables `REGION` and `STACK_NAME` to the region you are working in and name of the deployed cloudformation stack respectively in `app_complete.py`
@@ -97,6 +98,7 @@ To run this Streamlit App on Sagemaker Studio follow the steps in the link below
 
 To run this Streamlit App on AWS EC2 (I tested this on the Ubuntu Image)
 * [Create a new ec2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
+    - Use the sagemaker execution role `SageMakerRole` deployed by the cloudformation template above for your [ec2 instance profile IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
 * Expose TCP port range 8500-9000 on Inbound connections of the attached Security group to the ec2 instance. TCP port 8501 is needed for Streamlit to work. See image below
 * <img src="images/sg-rules.PNG" width="600"/>
 * [Connect to your ec2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)

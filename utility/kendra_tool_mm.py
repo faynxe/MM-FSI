@@ -18,8 +18,7 @@ region=params['region']
 def build_chain():
 
     inference_modifier = {'max_tokens_to_sample':512, 
-                      "temperature":0.1,
-                        "stop_sequences":["\n\nQuestion:","\n\nHuman:"] 
+                      "temperature":0.1,                     
                      }
 
     llm = llm = Bedrock(model_id='anthropic.claude-v2', model_kwargs = inference_modifier )

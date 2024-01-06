@@ -1,6 +1,6 @@
 # Generative AI and Multi-Modal Agents in AWS: The Key to Unlocking New Value in Financial Markets
 
-This file walks you through how to set up the infrastructure and applications, and run the code to create a multi-modal agents. The blog post provides a detailed discussion of this solution. 
+This file walks you through how to set up the infrastructure and applications, and run the code to create a multi-modal agents. The blog post provides a detailed discussion of this solution. This Solution uses Full-Access policies for certain services involved in the architecture and may not meet the security standards of certain business units, however, this solution should be used to show the art-of-possible and access policy should be scoped down for any other use.
 
 ## Achitecture Diagram
 
@@ -28,6 +28,12 @@ Upload the four zip files in folder *lambda_zip_files* to the S3 bucket.
 
 <img src="images/select_files.png" width="680"/>
 
+This Soluition requires Anthropic Claude2 model in Bedrock. Make sure you have access to the model in Bedrock.
+Navigate to the Bedrock console and click on **Model Access** to the left tab. Select the **Manage model access** button to the top-right.
+<img src="images/bedrock-accedss.JPG" width="680"/>
+
+Submit the **Use case details** and select the checkboxes beside the Anthropic models. Then select **save changes** button.
+<img src="images/bedrock-access2.JPG" width="680"/>
 
 ## Create infrastructure using CloudFormation
 
